@@ -1,98 +1,149 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 body {
-    width: 100%;
-    background-color: rgb(40, 40, 40);
-    font-family: Georgia, 'Times New Roman', Times, serif;
+  width: 100%;
+  background-color: rgb(40, 40, 40);
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 button {
-    font-size: 1rem;
-    width: 100%;
-    height: 1.8rem;
-    border-radius: .4rem;
-    background-color: hsl(0, 48%, 68%);
-    border-color: hsl(15, 48%, 68%);
-    box-shadow: 2px 2px 2px 0 rgba(245, 214, 214, 0.7);
-    font-family: inherit;
-    line-height: 1rem;
-    letter-spacing: 2px;
-    font-weight: 500;
+  font-size: 1rem;
+  width: 100%;
+  height: 1.8rem;
+  border-radius: 0.4rem;
+  background-color: hsl(0, 48%, 68%);
+  border-color: hsl(15, 48%, 68%);
+  box-shadow: 2px 2px 2px 0 rgba(245, 214, 214, 0.7);
+  font-family: inherit;
+  line-height: 1rem;
+  letter-spacing: 2px;
+  font-weight: 500;
 }
 #container {
-    max-width: 500px;
-    margin: 6rem auto;
-    display: flex;
+  margin: 0 auto;
+  height: 100vh;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner-container {
+  display: flex;
 }
 #board {
-    flex-shrink: 0;
-    flex-grow: 0;
-    width: 400px;
-    display: flex;
-    flex-wrap: wrap;
-    border: solid rgb(10,10,10) 1px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  border: solid rgb(10, 10, 10) 1px;
 }
 #flags-left {
-    margin: 2rem .5rem;
+  margin: 2rem 0.5rem;
 }
+
+.col-1 {
+  position: relative;
+}
+
 #head {
-    display: flex; 
-    justify-content: 
-    space-between; 
-    margin: 0 2rem;
-    font-size: 2rem;
-    color: rgb(151, 96, 96)
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 2rem;
+  font-size: 2rem;
+  color: rgb(151, 96, 96);
+  position: absolute;
+  top: 0;
+  transform: translateY(-100%);
+  width: 100%;
+  font-size: 3rem;
 }
 #message {
-    text-align: center;
-    font-size: 3rem;
-    color: green;
-    background-color: white;;
-    position: fixed;
-    top: 38%;
-    width: 6.25em;
+  text-align: center;
+  font-size: 3rem;
+  color: green;
+  background-color: white;
+  position: relative;
 }
 #reset {
-    margin: 1.5rem .5rem;
+  /*     margin: 1.5rem .5rem; */
 }
-#side {
-    width: 100px;
-    background-color: rgb(40, 40, 40);
-    padding: 6rem 0 0 1rem;
-    display: flex;
-    flex-direction: column;
+.col-2 {
+  width: 100px;
+  background-color: rgb(40, 40, 40);
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  margin-top: 2rem;
 }
+
+.col-2 > * {
+  margin-top: 1rem;
+}
+
+.col-2 > *:first-child {
+  margin-top: 0rem;
+}
+
+.col-2 > *:last-child {
+  margin-top: 1.5rem;
+}
+
 #time {
-    margin: 2rem .5rem;
+  margin: 2rem 0.5rem;
+}
+.win {
+  /* animation properties */
+  animation-name: win-animation;
+  animation-duration: 2s;
+  animation-direction: normal;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+
+  display: fixed;
+  font-size: 2rem;
+}
+@keyframes win-animation {
+  from {
+    background-color: rgba(40, 40, 40, 0);
+    width: 100%;
+    transform: translate(0, 0);
+    font-size: 2rem;
+  }
+  to {
+    background-color: rgb(40, 40, 40, 0);
+    width: 100px;
+    transform: translate(0, 300px);
+    font-size: 4rem;
+  }
 }
 .cell {
-    padding-top: 2px;
-    align-items: center;
-    text-align: center;
-    font-size: 1.9rem;
-    font-weight: 700;
-    font-family: 'Courier New', Courier, monospace;
-    justify-content: center;
-    width: 10%;
-    height: 10%;
-    margin: 0;
-    color: rgb(97, 40, 33);
-    background-color: rgb(141, 116, 116);
-    box-shadow: inset 3px 3px 5px 0 rgba(10,10,10,.7);
-    display: inline-block;
-    vertical-align: middle;
+  padding-top: 2px;
+  align-items: center;
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 700;
+  font-family: "Courier New", Courier, monospace;
+  justify-content: center;
+  width: 10%;
+  height: 10%;
+  margin: 0;
+  color: rgb(97, 40, 33);
+  background-color: rgb(141, 116, 116);
+  box-shadow: inset 3px 3px 5px 0 rgba(10, 10, 10, 0.7);
+  display: inline-block;
+  vertical-align: middle;
 }
 .levels {
-    margin: .4rem .5rem;
+  /*     margin: .4rem .5rem; */
 }
 .easy {
-
 }
 .medium {
-
 }
 .hard {
-
 }

@@ -1,6 +1,7 @@
 const elements = {
     board: document.querySelector('#board'),
     cell: document.querySelectorAll('.cell'),
+    head: document.querySelector('#head'),
     message: document.querySelector('#message'),
     flagsLeft: document.querySelector('#flags-left'),
     time: document.querySelector('#time'),
@@ -11,7 +12,7 @@ const elements = {
 }
 
 const level = {
-    easy: { rows: 10, cols: 10, size: 40, mines: 10, padLeft: 3, padTop: 2, fontSize: 1.9, mineSize: 1.8, flagSize: 1.5 },
+    easy: { rows: 10, cols: 10, size: 40, mines: 1, padLeft: 3, padTop: 2, fontSize: 1.9, mineSize: 1.8, flagSize: 1.5 },
     medium: { rows: 14, cols: 14, size: 30, mines: 40, padLeft: 1, padTop: 3, fontSize: 1.6, mineSize: 1.5, flagSize: 1.2 },
     hard: { rows: 20, cols: 20, size: 25, mines: 100, padLeft: 0, padTop: 3, fontSize: .8, mineSize: 1.2, flagSize: .9 }
 };
@@ -29,6 +30,7 @@ let gameover, gameStarted = false;
 
 const initGame = () => {
     elements.message.style.display = 'none';
+    elements.flagsLeft.style.display = 'block';
     elements.board.innerHTML = '';
     elements.flagsLeft.innerHTML = difficulty.mines;
     elements.time.innerHTML = 0;
@@ -151,11 +153,14 @@ const checkWin = () => {
             }
         }
     });
+    if (document.querySelectorAll('div.cell').length - document.querySelectorAll('div.checked').length == parseInt(elements.flagsLeft.innerHTML)) win = true;
     if (win) {
         elements.message.style.display = 'block';
         elements.message.innerHTML = 'You Win!';
         clearInterval(timerId);
         elements.board.style.pointerEvents = 'none';
+        elements.flagsLeft.style.display = 'none';
+        elements.head.classList.add('win');
     }
 }
 
@@ -166,7 +171,6 @@ const checkCell = (cell) => {
     const isRightEdge = currentId % cols === cols - 1;
 
     elements.board.childNodes[currentId].classList.add('checked');
-    console.log(elements.board.childNodes[currentId].classList);
     elements.board.childNodes[currentId].style.backgroundColor = 'rgb(50, 50, 50)';
 
     setTimeout(() => {
@@ -242,12 +246,10 @@ initGame();
 
 elements.btnEasy.addEventListener('click', () => {
     difficulty = level.easy;
-    console.log(difficulty);
     resetGame();
 });
 elements.btnMedium.addEventListener('click', () => {
     difficulty = level.medium;
-    console.log(difficulty.cols * difficulty.size)
     resetGame();
 });
 elements.btnHard.addEventListener('click', () => {
@@ -255,11 +257,9 @@ elements.btnHard.addEventListener('click', () => {
     resetGame();
 });
 elements.board.addEventListener('click', (e) => {
-    console.log('hi')
     click(e.target);
 });
 elements.btnReset.addEventListener('click', () => {
-    console.log('hi')
     resetGame();
 });
 elements.board.addEventListener('contextmenu', (e) => {

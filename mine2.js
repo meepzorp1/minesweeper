@@ -12,7 +12,7 @@ const elements = {
 }
 
 const level = {
-    easy: { rows: 10, cols: 10, size: 40, mines: 1, padLeft: 3, padTop: 2, fontSize: 1.9, mineSize: 1.8, flagSize: 1.5 },
+    easy: { rows: 10, cols: 10, size: 40, mines: 10, padLeft: 3, padTop: 2, fontSize: 1.9, mineSize: 1.8, flagSize: 1.5 },
     medium: { rows: 14, cols: 14, size: 30, mines: 40, padLeft: 1, padTop: 3, fontSize: 1.6, mineSize: 1.5, flagSize: 1.2 },
     hard: { rows: 20, cols: 20, size: 25, mines: 100, padLeft: 0, padTop: 3, fontSize: .8, mineSize: 1.2, flagSize: .9 }
 };
@@ -160,7 +160,7 @@ const checkWin = () => {
         clearInterval(timerId);
         elements.board.style.pointerEvents = 'none';
         elements.flagsLeft.style.display = 'none';
-        elements.head.classList.add('win');
+
     }
 }
 
